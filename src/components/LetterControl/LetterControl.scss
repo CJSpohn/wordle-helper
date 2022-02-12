@@ -1,0 +1,27 @@
+input[type="text"] {
+  color: #d7dadc;
+  width: 65px;
+  height: 65px;
+  margin: 0 5px;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: capitalize;
+  border: none;
+  margin-bottom: 5px;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    box-sizing: border-box;
+    appearance: none;
+    background: white;
+    outline: 2px solid #333;
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -1,0 +1,16 @@
+.wordle-input {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  > input {
+    color: #d7dadc;
+    width: 65px;
+    height: 65px;
+    margin: 0 5px;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
+    border: none;
+  }
+}
