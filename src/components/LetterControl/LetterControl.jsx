@@ -18,6 +18,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
   };
 
   const handleKeyUp = (e) => {
+    console.log(e);
     if (e.target.value.length >= 1) {
       if (e.target.dataset.position === "4") {
         return;
@@ -25,7 +26,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
         const nextLetterInput = e.target.parentNode.nextSibling?.firstChild;
         nextLetterInput?.nodeName === "INPUT" && nextLetterInput.focus();
       }
-    } else if (e.target.value.length === 0) {
+    } else if (e.target.value.length === 0 && e.nativeEvent?.data !== null) {
       const prevLetterInput = e.target.parentNode.previousSibling?.firstChild;
       prevLetterInput?.nodeName === "INPUT" && prevLetterInput.focus();
     }
