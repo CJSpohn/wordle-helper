@@ -9,6 +9,11 @@ input[type="text"] {
   text-transform: capitalize;
   border: none;
   margin-bottom: 5px;
+
+  @media screen and (max-width: 425px) {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .radio-wrapper {
@@ -23,5 +28,9 @@ input[type="text"] {
     outline: 2px solid #333;
     width: 16px;
     height: 16px;
+    @media screen and (max-width: 425px) {
+      width: 8px;
+      height: 8px;
+    }
   }
 }
