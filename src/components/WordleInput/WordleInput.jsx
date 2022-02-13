@@ -1,4 +1,3 @@
-import { useState, useRef } from "react";
 import "./WordleInput.scss";
 import { LetterControl } from "../LetterControl/LetterControl";
 const WordleInput = () => {

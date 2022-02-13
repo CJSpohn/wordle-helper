@@ -7,8 +7,40 @@
   padding-top: 50px;
   background: #121214;
 
+  p {
+    color: white;
+    text-align: center;
+  }
+
+  .answer-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .word {
+      margin: 0;
+      font-size: 3rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.2rem;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
   .word-input {
     display: flex;
+  }
+
+  .new-word-button {
+    margin-top: 15px;
+    background-color: #e1dbc3;
+    cursor: pointer;
+    border-radius: 8px;
+    height: 30px;
+    width: 100px;
   }
 
   .go-button {

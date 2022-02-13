@@ -6,80 +6,82 @@ const wordleFinder = (
   truePositions,
   falsePositions
 ) => {
+  //remove all words with letters that were shown gray
   const possibilitiesAfterExclusion = excludedLetters.reduce((list, letter) => {
     const possibleWords = list.filter((word) => !word.includes(letter));
     return possibleWords;
   }, wordList);
 
+  //remove all words that do not contain letters that were shown yellow
   const possibilitiesAfterInclusion = includedLetters.reduce((list, letter) => {
     const possibleWords = list.filter((word) => word.includes(letter));
     return possibleWords;
   }, possibilitiesAfterExclusion);
-  // { 0: 'p', 1: '', 2: '', 3: 's', 4: ''}
-  const possibilitesAfterFirstLetter = truePositions[0]
-    ? possibilitiesAfterInclusion.filter((word) => word[0] === truePositions[0])
-    : possibilitiesAfterInclusion;
 
-  const possibilitesAfterSecondLetter = truePositions[1]
-    ? possibilitesAfterFirstLetter.filter(
-        (word) => word[1] === truePositions[1]
-      )
-    : possibilitesAfterFirstLetter;
+  //remove all words that do not have letters in their known positions (shown green)
+  const possibilitiesAfterTruePositions = [0, 1, 2, 3, 4].reduce(
+    (wordsLeft, word, index) => {
+      return truePositions[index]
+        ? wordsLeft.filter((word) => word[index] === truePositions[index])
+        : wordsLeft;
+    },
+    possibilitiesAfterInclusion
+  );
 
-  const possibilitesAfterThirdLetter = truePositions[2]
-    ? possibilitesAfterSecondLetter.filter(
-        (word) => word[2] === truePositions[2]
-      )
-    : possibilitesAfterSecondLetter;
+  //remove all words that have letters where they cannot be (were previously yellow in that slot)
+  const possibilitiesAfterFalsePositions = [0, 1, 2, 3, 4].reduce(
+    (wordsLeft, word, index) => {
+      return falsePositions[index]?.length > 0
+        ? wordsLeft.filter(
+            (word) =>
+              !falsePositions[index].some((letter) => letter === word[index])
+          )
+        : wordsLeft;
+    },
+    possibilitiesAfterTruePositions
+  );
 
-  const possibilitesAfterFourthLetter = truePositions[3]
-    ? possibilitesAfterThirdLetter.filter(
-        (word) => word[3] === truePositions[3]
-      )
-    : possibilitesAfterThirdLetter;
+  // example for totaling most common letters of every word still in play
+  // const wordsAfterTrace = wordList.filter((word) => {
+  //   return (
+  //     !word.includes("t") &&
+  //     !word.includes("r") &&
+  //     !word.includes("a") &&
+  //     !word.includes("c") &&
+  //     !word.includes("e")
+  //   );
+  // });
 
-  const possibilitesAfterFifthLetter = truePositions[4]
-    ? possibilitesAfterFourthLetter.filter(
-        (word) => word[4] === truePositions[4]
-      )
-    : possibilitesAfterFourthLetter;
-  // ["trust", "truce", "hotel"] {0: ["t", "l"], 1: ["e"]}
-  const removedFalsePositions0 =
-    falsePositions[0].length > 0
-      ? possibilitesAfterFifthLetter.filter(
-          (word) => !falsePositions[0].some((letter) => letter === word[0])
-        )
-      : possibilitesAfterFifthLetter;
+  // const letters = wordsAfterTrace.reduce((a, c) => {
+  //   if (!a[c[0]]) {
+  //     a[c[0]] = 1;
+  //   } else {
+  //     a[c[0]]++;
+  //   }
+  //   if (!a[c[0]]) {
+  //     a[c[0]] = 1;
+  //   } else {
+  //     a[c[0]]++;
+  //   }
+  //   if (!a[c[0]]) {
+  //     a[c[0]] = 1;
+  //   } else {
+  //     a[c[0]]++;
+  //   }
+  //   if (!a[c[0]]) {
+  //     a[c[0]] = 1;
+  //   } else {
+  //     a[c[0]]++;
+  //   }
+  //   if (!a[c[0]]) {
+  //     a[c[0]] = 1;
+  //   } else {
+  //     a[c[0]]++;
+  //   }
+  //   return a;
+  // }, {});
 
-  const removedFalsePositions1 =
-    falsePositions[1].length > 0
-      ? removedFalsePositions0.filter(
-          (word) => !falsePositions[1].some((letter) => letter === word[1])
-        )
-      : removedFalsePositions0;
-
-  const removedFalsePositions2 =
-    falsePositions[2].length > 0
-      ? removedFalsePositions1.filter(
-          (word) => !falsePositions[2].some((letter) => letter === word[2])
-        )
-      : removedFalsePositions1;
-
-  const removedFalsePositions3 =
-    falsePositions[3].length > 0
-      ? removedFalsePositions2.filter(
-          (word) => !falsePositions[3].some((letter) => letter === word[3])
-        )
-      : removedFalsePositions2;
-
-  const removedFalsePositions4 =
-    falsePositions[4].length > 0
-      ? removedFalsePositions3.filter(
-          (word) => !falsePositions[4].some((letter) => letter === word[4])
-        )
-      : removedFalsePositions3;
-
-  return removedFalsePositions4;
+  return possibilitiesAfterFalsePositions;
 };
 
 export default wordleFinder;

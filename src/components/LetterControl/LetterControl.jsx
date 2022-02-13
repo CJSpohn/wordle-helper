@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./LetterControl.scss";
 
 const colorDict = {
@@ -19,13 +18,12 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
   };
 
   const handleKeyUp = (e) => {
-    console.log(e.target.dataset.position);
     if (
       (e.keyCode >= 65 && e.keyCode <= 90) ||
       (e.keyCode >= 97 && e.keyCode <= 122)
     ) {
       if (e.target.dataset.position === "4") {
-        const button = e.target.parentNode.nextSibling;
+        const button = e.target.parentNode.parentNode.nextSibling;
         button.focus();
       } else {
         const nextLetterInput = e.target.parentNode.nextSibling?.firstChild;

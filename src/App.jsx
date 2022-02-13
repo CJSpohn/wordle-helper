@@ -3,6 +3,7 @@ import "./App.scss";
 import wordleFinder from "./wordleFinder";
 import WordControl from "./components/WordControl/WordControl";
 import Header from "./Header/Header";
+//TODO make new word button not random for when there are only a few options left
 
 const initialWordState = {
   0: {
@@ -53,34 +54,36 @@ const App = () => {
       possibleWords[Math.floor(Math.random() * possibleWords.length)]
     );
   }, [possibleWords]);
+
   useEffect(() => {
-    setPossibleWords(
-      wordleFinder(
-        excludedLetters,
-        includedLetters,
-        truePositions,
-        falsePositions
-      )
+    const wordsLeft = wordleFinder(
+      excludedLetters,
+      includedLetters,
+      truePositions,
+      falsePositions
     );
+    setPossibleWords(wordsLeft);
   }, [includedLetters, excludedLetters, truePositions, falsePositions]);
 
   const determineWord = () => {
+    const currentExcludedLetters = [];
+    const currentIncludedLetters = [];
     for (const letterPosition in word) {
       switch (word[letterPosition].color) {
         case "gray":
           if (
+            //don't put it in the array twice
             !excludedLetters.includes(word[letterPosition].value) &&
-            word[letterPosition].value.length > 0
+            //don't exclude it if it's already in the word (double letter words)
+            !includedLetters.includes(word[letterPosition].value) && // previous words
+            !currentIncludedLetters.includes(word[letterPosition].value) // this word
           ) {
-            setExcludedLetters((prev) => [...prev, word[letterPosition].value]);
+            currentExcludedLetters.push(word[letterPosition].value);
           }
           break;
         case "yellow":
-          if (
-            !includedLetters.includes(word[letterPosition].value) &&
-            word[letterPosition].value.length > 0
-          ) {
-            setIncludedLetters((prev) => [...prev, word[letterPosition].value]);
+          if (!includedLetters.includes(word[letterPosition].value)) {
+            currentIncludedLetters.push(word[letterPosition].value);
           }
           setFalsePositions((prev) => ({
             ...prev,
@@ -91,6 +94,9 @@ const App = () => {
           }));
           break;
         case "green":
+          if (!currentIncludedLetters.includes(word[letterPosition].value)) {
+            currentIncludedLetters.push(word[letterPosition].value);
+          }
           setTruePositions((prev) => ({
             ...prev,
             [letterPosition]: word[letterPosition].value,
@@ -100,7 +106,19 @@ const App = () => {
           break;
       }
     }
+    //this ensures if one O was gray and one O was yellow we don't include O in the list of exclusions
+    const allowedDuplicates = currentExcludedLetters.filter(
+      (letter) => !currentIncludedLetters.includes(letter)
+    );
+    setExcludedLetters((prev) => [...prev, ...allowedDuplicates]);
+    setIncludedLetters((prev) => [...prev, ...currentIncludedLetters]);
     setWord(initialWordState);
+  };
+
+  const handleNewWord = () => {
+    setWordGuess(
+      possibleWords[Math.floor(Math.random() * possibleWords.length)]
+    );
   };
 
   return (
@@ -109,28 +127,45 @@ const App = () => {
       <section className="word-input">
         <WordControl word={word} setWord={setWord} />
       </section>
-      <button className="go-button" onClick={determineWord}>
+      <button
+        className="go-button"
+        onClick={determineWord}
+        disabled={
+          word[0].value.length !== 1 ||
+          word[1].value.length !== 1 ||
+          word[2].value.length !== 1 ||
+          word[3].value.length !== 1 ||
+          word[4].value.length !== 1
+        }
+      >
         GO!
       </button>
       {!!possibleWords.length &&
         possibleWords.length !== 2315 &&
         possibleWords.length > 1 && (
-          <p style={{ color: "white" }}>
-            There are {possibleWords.length} words remaining. Try guessing{" "}
-            {wordGuess}
-          </p>
+          <div className="answer-wrapper">
+            <p>
+              There are {possibleWords.length} words remaining. Try guessing:
+            </p>
+            <br />
+            <p className="word">{wordGuess}</p>
+          </div>
         )}
       {possibleWords.length === 1 && (
-        <p style={{ color: "white" }}>
-          HOLY SHIT YOUR WORD IS {possibleWords[0]}
-        </p>
+        <div className="answer-wrapper">
+          <p>We found it! Your word is </p>
+          <p className="word">{possibleWords[0]}</p>
+        </div>
       )}
       {possibleWords.length === 0 && (
-        <p style={{ color: "white" }}>
-          There are no words left. You may have messed up. Refresh the page to
-          start over.
+        <p>
+          There are no words left. You may have messed up. :( Refresh the page
+          to start over.
         </p>
       )}
+      <button className="new-word-button" onClick={handleNewWord}>
+        New Word?
+      </button>
     </div>
   );
 };
