@@ -38,6 +38,7 @@
   .word-input {
     display: flex;
     justify-content: center;
+    max-width: 95%;
   }
 
   .new-word-button {
@@ -54,7 +55,8 @@
     background-color: #e1dbc3;
     border-radius: 8px;
     font-size: 16px;
-    width: 300px;
+    max-width: 300px;
+    width: 80vw;
     height: 30px;
     color: #222222;
     font-weight: 700;
@@ -66,9 +68,6 @@
     transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s; /* Safari */
     margin-top: 25px;
-    @media screen and (max-width: 425px) {
-      width: 100px;
-    }
   }
 
   .go-button:hover {
