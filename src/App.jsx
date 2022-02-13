@@ -121,6 +121,27 @@ const App = () => {
     );
   };
 
+  const handleStartOver = () => {
+    setWord(initialWordState);
+    setExcludedLetters([]);
+    setIncludedLetters([]);
+    setTruePositions({
+      0: "",
+      1: "",
+      2: "",
+      3: "",
+      4: "",
+    });
+    setFalsePositions({
+      0: [],
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+    });
+    setWordGuess("");
+  };
+
   return (
     <div className="main">
       <Header />
@@ -168,6 +189,9 @@ const App = () => {
           to start over.
         </p>
       )}
+      <button className="new-word-button" onClick={handleStartOver}>
+        Start Over
+      </button>
     </div>
   );
 };
