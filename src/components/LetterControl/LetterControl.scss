@@ -1,3 +1,9 @@
+.letter-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 input[type="text"] {
   color: #d7dadc;
   width: 65px;
@@ -14,6 +20,12 @@ input[type="text"] {
     width: 50px;
     height: 50px;
     font-size: 36px;
+  }
+
+  @media screen and (max-width: 350px) {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
   }
 }
 
@@ -32,6 +44,10 @@ input[type="text"] {
     @media screen and (max-width: 425px) {
       width: 12px;
       height: 12px;
+    }
+    @media screen and (max-width: 350px) {
+      width: 8px;
+      height: 8px;
     }
   }
 }

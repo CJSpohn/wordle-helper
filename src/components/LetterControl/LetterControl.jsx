@@ -20,8 +20,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
   const handleKeyUp = (e) => {
     if (e.target.value.length >= 1) {
       if (e.target.dataset.position === "4") {
-        const button = e.target.parentNode.parentNode.nextSibling;
-        button.focus();
+        return;
       } else {
         const nextLetterInput = e.target.parentNode.nextSibling?.firstChild;
         nextLetterInput?.nodeName === "INPUT" && nextLetterInput.focus();
