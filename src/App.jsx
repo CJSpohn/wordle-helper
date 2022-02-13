@@ -201,12 +201,6 @@ const App = () => {
       <button className="new-word-button" onClick={handleStartOver}>
         Start Over
       </button>
-      <p>V 1.0.2</p>
-      <p>{possibleWords.length}</p>
-      <p>
-        One: {word[0].value} Two: {word[1].value} Three: {word[2].value} Four:{" "}
-        {word[3].value} Five: {word[4].value}
-      </p>
     </div>
   );
 };
