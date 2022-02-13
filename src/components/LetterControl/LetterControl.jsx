@@ -18,7 +18,6 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
   };
 
   const handleKeyUp = (e) => {
-    console.log(e);
     if (e.target.value.length >= 1) {
       if (e.target.dataset.position === "4") {
         return;
