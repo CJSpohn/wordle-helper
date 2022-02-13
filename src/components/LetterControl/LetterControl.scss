@@ -31,17 +31,18 @@ input[type="text"] {
 .radio-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-evenly;
+  width: 15vw;
+  max-width: 70px;
 
   input {
     box-sizing: border-box;
     appearance: none;
     background: white;
-    outline: 2px solid #333;
     width: 4vw;
     height: 4vw;
-    max-width: 16px;
-    max-height: 16px;
+    max-width: 18px;
+    max-height: 18px;
+    margin: 0;
   }
 }

@@ -24,6 +24,9 @@
       text-transform: uppercase;
       font-weight: 700;
       letter-spacing: 0.2rem;
+      @media screen and (max-width: 425px) {
+        font-size: 2rem;
+      }
     }
 
     .winning-word {
@@ -38,7 +41,8 @@
   .word-input {
     display: flex;
     justify-content: center;
-    max-width: 95%;
+    width: 95vw;
+    max-width: 450px;
   }
 
   .new-word-button {
