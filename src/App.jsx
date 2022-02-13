@@ -185,8 +185,8 @@ const App = () => {
       )}
       {possibleWords.length === 0 && (
         <p>
-          There are no words left. You may have messed up. :( Refresh the page
-          to start over.
+          There are no words left. Either you messed up or we did :( Try
+          starting over!
         </p>
       )}
       <button className="new-word-button" onClick={handleStartOver}>
