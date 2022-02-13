@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { LetterControl } from "../LetterControl/LetterControl";
 
 export const WordControl = ({ word, setWord }) => {

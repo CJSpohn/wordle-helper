@@ -143,13 +143,18 @@ const App = () => {
       {!!possibleWords.length &&
         possibleWords.length !== 2315 &&
         possibleWords.length > 1 && (
-          <div className="answer-wrapper">
-            <p>
-              There are {possibleWords.length} words remaining. Try guessing:
-            </p>
-            <br />
-            <p className="word">{wordGuess}</p>
-          </div>
+          <>
+            <div className="answer-wrapper">
+              <p>
+                There are {possibleWords.length} words remaining. Try guessing:
+              </p>
+              <br />
+              <p className="word">{wordGuess}</p>
+            </div>
+            <button className="new-word-button" onClick={handleNewWord}>
+              New Word?
+            </button>
+          </>
         )}
       {possibleWords.length === 1 && (
         <div className="answer-wrapper">
@@ -163,9 +168,6 @@ const App = () => {
           to start over.
         </p>
       )}
-      <button className="new-word-button" onClick={handleNewWord}>
-        New Word?
-      </button>
     </div>
   );
 };
