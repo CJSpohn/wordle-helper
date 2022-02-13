@@ -46,7 +46,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
             ...prev,
             [letterPosition]: {
               ...prev[letterPosition],
-              value: e.target.value.toLowerCase(),
+              value: e.target.value.toLowerCase().charAt(0),
             },
           }))
         }
