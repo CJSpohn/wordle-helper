@@ -3,7 +3,6 @@ import "./App.scss";
 import wordleFinder from "./wordleFinder";
 import WordControl from "./components/WordControl/WordControl";
 import Header from "./Header/Header";
-//TODO make new word button not random for when there are only a few options left
 
 const initialWordState = {
   0: {
@@ -163,7 +162,7 @@ const App = () => {
       </button>
       {!!possibleWords.length &&
         possibleWords.length !== 2315 &&
-        possibleWords.length > 1 && (
+        possibleWords.length >= 5 && (
           <>
             <div className="answer-wrapper">
               <p>
@@ -177,10 +176,20 @@ const App = () => {
             </button>
           </>
         )}
+      {!!possibleWords.length &&
+        possibleWords.length < 5 &&
+        possibleWords.length > 1 && (
+          <div className="answer-wrapper">
+            <p>
+              There are only {possibleWords.length} left! It's one of <br />
+              <span className="word">{possibleWords.join(", ")}</span>
+            </p>
+          </div>
+        )}
       {possibleWords.length === 1 && (
         <div className="answer-wrapper">
           <p>We found it! Your word is </p>
-          <p className="word">{possibleWords[0]}</p>
+          <p className="word winning-word">{possibleWords[0]}</p>
         </div>
       )}
       {possibleWords.length === 0 && (
