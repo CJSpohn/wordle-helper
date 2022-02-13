@@ -201,7 +201,8 @@ const App = () => {
       <button className="new-word-button" onClick={handleStartOver}>
         Start Over
       </button>
-      <p>V 1.0.0</p>
+      <p>V 1.0.1</p>
+      <p>{possibleWords.length}</p>
     </div>
   );
 };
