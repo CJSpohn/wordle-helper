@@ -18,10 +18,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
   };
 
   const handleKeyUp = (e) => {
-    if (
-      (e.keyCode >= 65 && e.keyCode <= 90) ||
-      (e.keyCode >= 97 && e.keyCode <= 122)
-    ) {
+    if (e.target.value.length >= 1) {
       if (e.target.dataset.position === "4") {
         const button = e.target.parentNode.parentNode.nextSibling;
         button.focus();
@@ -29,7 +26,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
         const nextLetterInput = e.target.parentNode.nextSibling?.firstChild;
         nextLetterInput?.nodeName === "INPUT" && nextLetterInput.focus();
       }
-    } else if (e.key === "Backspace") {
+    } else if (e.target.value.length === 0) {
       const prevLetterInput = e.target.parentNode.previousSibling?.firstChild;
       prevLetterInput?.nodeName === "INPUT" && prevLetterInput.focus();
     }
@@ -41,17 +38,18 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
         maxLength="1"
         type="text"
         value={word[letterPosition].value}
-        onChange={(e) =>
+        onChange={(e) => {
           setWord((prev) => ({
             ...prev,
             [letterPosition]: {
               ...prev[letterPosition],
               value: e.target.value.toLowerCase().charAt(0),
             },
-          }))
-        }
+          }));
+          handleKeyUp(e);
+        }}
         data-position={letterPosition}
-        onKeyUp={(e, referenceRef) => handleKeyUp(e, referenceRef)}
+        // onKeyUp={(e) => handleKeyUp(e)}
         style={{ background: colorDict[word[letterPosition].color] }}
         autoFocus={autoFocus}
         autoComplete="off"
