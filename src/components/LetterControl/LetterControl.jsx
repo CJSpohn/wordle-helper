@@ -32,12 +32,13 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
   };
 
   return (
-    <div>
+    <div className="letter-input-wrapper">
       <input
         maxLength="1"
         type="text"
         value={word[letterPosition].value}
         onChange={(e) => {
+          handleKeyUp(e);
           setWord((prev) => ({
             ...prev,
             [letterPosition]: {
@@ -45,7 +46,6 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
               value: e.target.value.toLowerCase().charAt(0),
             },
           }));
-          handleKeyUp(e);
         }}
         data-position={letterPosition}
         // onKeyUp={(e) => handleKeyUp(e)}
