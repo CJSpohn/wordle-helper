@@ -54,6 +54,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
         onKeyUp={(e, referenceRef) => handleKeyUp(e, referenceRef)}
         style={{ background: colorDict[word[letterPosition].color] }}
         autoFocus={autoFocus}
+        autoComplete="off"
       ></input>
       <div className="radio-wrapper">
         <input
