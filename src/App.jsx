@@ -201,6 +201,7 @@ const App = () => {
       <button className="new-word-button" onClick={handleStartOver}>
         Start Over
       </button>
+      <p>V 1.0.0</p>
     </div>
   );
 };
