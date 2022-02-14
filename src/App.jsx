@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.scss";
 import wordleFinder from "./wordleFinder";
 import WordControl from "./components/WordControl/WordControl";
-import Header from "./Header/Header";
+import Header from "./components/Header/Header";
 
 const initialWordState = {
   0: {

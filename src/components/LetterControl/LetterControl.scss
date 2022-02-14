@@ -46,5 +46,8 @@ input[type="text"] {
     max-height: 18px;
     margin: 0;
     border-radius: 0;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
