@@ -1,6 +1,6 @@
 ## Wordle Helper 
 
-[Deployed Site](https://cjspohn.github.io/wordle-helper/)
+[Deployed Site](https://wordle-helper-5b94b.web.app/)
 
 Not as good at Wordle as your linguistically-inclined peers? Tired of being the laughing stock of your friend group? Are your Wordle experiences less like G-R-E-A-T and more like L-O-S-E-R? Look no further, Wordle Helper has your back. Simply enter your Wordle guess into the helper and designate the correct colors for each letter. 
 <img width="810" alt="Screen Shot 2022-02-13 at 11 27 00 AM" src="https://user-images.githubusercontent.com/69563078/153769207-448a20ac-f8aa-4964-b57e-8bb85a20a2f6.png">
