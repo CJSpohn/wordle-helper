@@ -48,7 +48,6 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
           }));
         }}
         data-position={letterPosition}
-        // onKeyUp={(e) => handleKeyUp(e)}
         style={{ background: colorDict[word[letterPosition].color] }}
         autoFocus={autoFocus}
         autoComplete="off"
@@ -63,7 +62,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
           checked={word[letterPosition].color === "gray"}
           onChange={(e) => handleRadioChange(e)}
           style={{ background: colorDict.gray }}
-        ></input>
+        />
         <input
           type="radio"
           id="yellow"
@@ -73,7 +72,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
           checked={word[letterPosition].color === "yellow"}
           onChange={(e) => handleRadioChange(e)}
           style={{ background: colorDict.yellow }}
-        ></input>
+        />
         <input
           type="radio"
           id="green"
@@ -83,7 +82,7 @@ export const LetterControl = ({ autoFocus, letterPosition, setWord, word }) => {
           checked={word[letterPosition].color === "green"}
           onChange={(e) => handleRadioChange(e)}
           style={{ background: colorDict.green }}
-        ></input>
+        />
       </div>
     </div>
   );
