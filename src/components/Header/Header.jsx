@@ -1,5 +1,6 @@
 import "./Header.scss";
 export const Header = () => {
+  //this is my header comment
   return (
     <header className="header">
       <h1>Wordle Helper!</h1>
